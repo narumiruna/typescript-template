@@ -1,6 +1,7 @@
 {
   "name": "typescript-template",
-  "private": true,
+  "version": "0.0.0",
+  "private": false,
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
