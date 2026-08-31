@@ -2,14 +2,13 @@
 
 ## Human workflow
 
-Install [just](https://github.com/casey/just), then run:
+Install dependencies, build, and run:
 
 ```sh
-just install
-just run
+npm install
+npm run build
+npm start
 ```
-
-Use `just` to list all available commands.
 
 ## Automation
 
