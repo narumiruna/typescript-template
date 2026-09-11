@@ -7,5 +7,15 @@
   },
   "formatter": {
     "indentStyle": "space"
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "useConst": "error",
+        "useConsistentArrayType": "error",
+        "useShorthandFunctionType": "error",
+      
+      }
+    }
   }
 }
