@@ -6,16 +6,30 @@
     "useIgnoreFile": true
   },
   "formatter": {
-    "indentStyle": "space"
+    "indentStyle": "space",
+    "lineWidth": 100,
+    "indentWidth": 4
   },
   "linter": {
-    "rules": {
-      "style": {
-        "useConst": "error",
-        "useConsistentArrayType": "error",
-        "useShorthandFunctionType": "error",
-      
-      }
-    }
-  }
+		"enabled": true,
+		"rules": {
+			"preset": "recommended",
+			"complexity": {
+				"noUselessTypeConstraint": "error"
+			},
+			"performance": {
+				"noReExportAll": "error"
+			},
+			"style": {
+				"useAsConstAssertion": "error",
+				"useConsistentArrayType": "error",
+				"useConst": "error",
+				"useShorthandFunctionType": "error",
+				"useSingleVarDeclarator": "error"
+			},
+			"suspicious": {
+				"noExtraNonNullAssertion": "error"
+			}
+		}
+	},
 }
