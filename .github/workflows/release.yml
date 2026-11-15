@@ -6,28 +6,33 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
+permissions: {}
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false # Do not interrupt an active release.
 
 jobs:
   release:
+    name: Release
     if: github.repository != 'narumiruna/typescript-template' # Can be removed in repositories created from this template.
+    permissions:
+      contents: write # Commit version changes, create tags, and publish GitHub releases.
+      pull-requests: write # Open and update version pull requests.
+      id-token: write # Authenticate to npm using trusted publishing.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v7
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: 26
           registry-url: "https://registry.npmjs.org"
           cache: npm
       - run: npm ci
-      - uses: changesets/action@v2
+      - uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2
         with:
           github-token: ${{ secrets.PAT_TOKEN }}
           publish-script: npm run release
