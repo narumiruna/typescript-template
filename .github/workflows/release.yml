@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   release:
-    name: Release
+    name: release
     if: github.repository != 'narumiruna/typescript-template' # Can be removed in repositories created from this template.
     permissions:
       contents: write # Commit version changes, create tags, and publish GitHub releases.
