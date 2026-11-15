@@ -12,13 +12,11 @@
     "test": "vitest run",
     "ci": "npm run check && npm test && npm run build",
     "changeset": "changeset",
-    "release": "npm run build && changeset publish",
-    "prepare": "husky"
+    "release": "npm run build && changeset publish"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.6",
     "@changesets/cli": "^3.0.3",
-    "husky": "^9.1.7",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"
   }

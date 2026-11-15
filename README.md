@@ -2,13 +2,16 @@
 
 ## Human workflow
 
-Install dependencies, build, and run:
+Install [prek](https://prek.j178.dev/installation/), then install dependencies and enable the Git hooks. prek manages the Biome and zizmor hook environments:
 
 ```sh
 npm install
+prek install
 npm run build
 npm start
 ```
+
+For an existing Husky checkout, run `git config --local --unset core.hooksPath` before `prek install`.
 
 ## Automation
 
@@ -16,14 +19,24 @@ npm start
 npm run ci
 ```
 
-The CI command runs Biome, Vitest, and the TypeScript build. Husky runs it before each commit.
+The CI command runs Biome, Vitest, and the TypeScript build.
+
+[`prek.toml`](prek.toml) uses the official [Biome hooks](https://github.com/biomejs/pre-commit) to format, organize imports, lint, and apply safe fixes to staged files before each commit. It also uses the official [zizmor hook](https://github.com/zizmorcore/zizmor-pre-commit) with `--pedantic` to audit supported staged YAML files. If a hook changes files, review and stage the changes before retrying the commit.
+
+Run all hooks manually:
+
+```sh
+prek run --all-files
+```
+
+Keep the Biome hook revision aligned with `@biomejs/biome` in `package.json` and the schema version in `biome.json`. When updating Biome, migrate its configuration with `npm exec -- biome migrate --write`.
 
 GitHub Actions use commit-pinned actions and job-scoped permissions. CI cancels superseded runs. Dependabot waits at least seven days before proposing new dependency versions; security updates are not delayed.
 
 Audit the GitHub Actions and Dependabot configuration:
 
 ```sh
-zizmor --pedantic .
+prek run zizmor --all-files
 ```
 
 ## Release workflow
