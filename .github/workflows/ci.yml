@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   ci:
-    name: CI
+    name: ci
     permissions:
       contents: read # Check out the repository.
     runs-on: ubuntu-latest
