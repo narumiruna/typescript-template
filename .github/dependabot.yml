@@ -12,9 +12,3 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-  - package-ecosystem: docker
-    cooldown:
-      default-days: 7
-    directory: /
-    schedule:
-      interval: weekly
